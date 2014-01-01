@@ -5,9 +5,8 @@
 
         options: {
             onGroupExpand: function(g){},
-            onGroupCollapse: function(g){}//,
-            //  这里把OnClick屏蔽了。否则主页的会点不动
-            //onListClick: function(l){}
+            onGroupCollapse: function(g){},
+            onListClick: function(l){}
         },
 
         _create: function(){
@@ -51,6 +50,4 @@
     })
 })( jQuery );
 
-$(function () {
-    $('[data-role=listview]').listview();
-});
+

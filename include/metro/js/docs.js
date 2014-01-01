@@ -1,6 +1,10 @@
+var device_width = 0;
+var device_height = 0;
+
 function reinit()
 {
-    $('.dropdown-menu').dropdown({effect: 'slide'});
+    //$('.dropdown-menu').dropdown({effect: 'slide'});
+    $.Metro.initDropdowns();
 }
 
 $(function(){
@@ -20,6 +24,20 @@ $(function(){
 })
 
 
+function headerPosition(){
+    if ($(window).scrollTop() > $('header').height()) {
+        $("header .navigation-bar")
+            .addClass("fixed-top")
+            .addClass(" shadow")
+        ;
+    } else {
+        $("header .navigation-bar")
+            .removeClass("fixed-top")
+            .removeClass(" shadow")
+        ;
+    }
+}
+
 $(function() {
     if ($('nav > .side-menu').length > 0) {
         var side_menu = $('nav > .side-menu');
@@ -32,18 +50,32 @@ $(function() {
             }
         })
     }
-
-    $(window).scroll(function(){
-        if ($(window).scrollTop() > $('header').height()) {
-            $("header > .navigation-bar")
-                .addClass("fixed-top")
-                .addClass("opacity shadow")
-            ;
-        } else {
-            $("header > .navigation-bar")
-                .removeClass("fixed-top")
-                .removeClass("opacity shadow")
-            ;
-        }
-    });
 });
+
+$(function(){
+    setTimeout(function(){headerPosition();}, 100);
+})
+
+$(window).scroll(function(){
+    headerPosition();
+});
+
+function getDeviceSize(){
+    device_width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    //device_height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
+    $("#device_width").html(device_width);
+    //$("#device_height").html(device_height);
+}
+
+$(function(){
+    $("<div/>").addClass("padding20 bg-dark fg-white border bd-white no-display").css({
+        position: "fixed",
+        top: 0,
+        right: 0
+    }).html('<span id="device_width">0</span>').appendTo("body");
+    getDeviceSize();
+})
+
+$(window).resize(function(){
+    getDeviceSize();
+})
