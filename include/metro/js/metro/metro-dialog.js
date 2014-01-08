@@ -82,7 +82,7 @@
         _window.appendTo(_overlay);
 
         if (params.width != 'auto') _window.css('min-width', params.width);
-        if (params.height != 'auto') _window.css('min-height', params.height);
+        if (params.height != 'auto') _window.css('min-height', params.width);
 
         _overlay.hide().appendTo('body').fadeIn('fast');
 
@@ -92,15 +92,10 @@
         _window
             .css("position", "fixed")
             .css("top", ($(window).height() - _dialog.outerHeight()) / 2 )
-            .css("left", ($(window).width() - _window.outerWidth()) / 2)
-/*
-            .css("width", _content.outerWidth()+params.padding)
-            .css("height", _content.outerHeight()+params.padding)
-*/
-        ;
+            .css("left", ($(window).width() - _window.outerWidth()) / 2);
 
 
-        //console.log( $(window).height());
+        console.log( $(window).height());
 
         addTouchEvents(_window[0]);
 
@@ -143,6 +138,7 @@
         }
 
         _window.on('click', function(e){
+            e.preventDefault();
             e.stopPropagation();
         });
 
@@ -178,12 +174,10 @@
             return false;
         }
 
-        var _title = _dialog.children('.caption').children('.title');
-
         if(newTitle) {
-            _title.html(newTitle);
+            _dialog.children(".caption > .title").html(newTitle);
         } else {
-            _title.html();
+            _dialog.children(".caption > .title").html();
         }
     }
 
@@ -193,15 +187,12 @@
         }
 
         var _content = _dialog.children(".content");
-
-        console.log(_content);
-
         var top = ($(window).height() - _dialog.outerHeight()) / 2;
         var left = ($(window).width() - _dialog.outerWidth()) / 2;
 
         _dialog.css({
-            width: _content.outerWidth(),
-            height: _content.outerHeight()//+36
+            width: _content.width(),
+            height: _content.height()+36
         })
         .css("top",  top)
         .css("left", left);

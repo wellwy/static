@@ -85,4 +85,7 @@
     })
 })( jQuery );
 
-
+$(function(){
+    $('[data-role=button-set]').buttonset();
+    $('[data-role=button-group]').buttongroup();
+});

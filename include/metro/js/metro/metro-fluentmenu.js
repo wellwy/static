@@ -53,5 +53,6 @@
     })
 })( jQuery );
 
-
-
+$(function(){
+    $('[data-role=fluentmenu]').fluentmenu();
+});

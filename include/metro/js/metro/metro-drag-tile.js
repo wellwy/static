@@ -44,3 +44,6 @@
     })
 })( jQuery );
 
+$(function () {
+    $('.tile').dragtile();
+});

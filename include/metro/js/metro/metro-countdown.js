@@ -197,4 +197,6 @@
     });
 })( jQuery );
 
-
+$(function () {
+    $('[data-role=countdown]').countdown();
+});

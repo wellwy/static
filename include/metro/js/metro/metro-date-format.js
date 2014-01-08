@@ -34,8 +34,6 @@ var dateFormat = function () {
             date = undefined;
         }
 
-        //console.log(arguments);
-
         // Passing date through Date applies Date.parse, if necessary
         date = date ? new Date(date) : new Date;
         //if (isNaN(date)) throw SyntaxError("invalid date");
@@ -47,10 +45,6 @@ var dateFormat = function () {
             mask = mask.slice(4);
             utc = true;
         }
-
-        //console.log(locale);
-
-        locale = $.Metro.currentLocale;
 
         var	_ = utc ? "getUTC" : "get",
             d = date[_ + "Date"](),
@@ -65,12 +59,12 @@ var dateFormat = function () {
             flags = {
                 d:    d,
                 dd:   pad(d),
-                ddd:  $.Metro.Locale[locale].days[D],
-                dddd: $.Metro.Locale[locale].days[D + 7],
+                ddd:  dF.i18n.dayNames[D],
+                dddd: dF.i18n.dayNames[D + 7],
                 m:    m + 1,
                 mm:   pad(m + 1),
-                mmm: $.Metro.Locale[locale].months[m],
-                mmmm: $.Metro.Locale[locale].months[m + 12],
+                mmm:  dF.i18n.monthNames[m],
+                mmmm: dF.i18n.monthNames[m + 12],
                 yy:   String(y).slice(2),
                 yyyy: y,
                 h:    H % 12 || 12,

@@ -24,19 +24,16 @@ function touch2Mouse(e)
 
 
     if (mouseEv == "mousedown") {
-        eventTimer = (new Date()).getTime();
+        eventTimer = (new Date()).getMilliseconds();
         startX = theTouch.clientX;
         startY = theTouch.clientY;
         mouseDown = true;
     }
 
     if (mouseEv == "mouseup") {
-        if ((new Date()).getTime() - eventTimer <= 500) {
+        if ((new Date()).getMilliseconds() - eventTimer <= 500) {
             mouseEv = "click";
-        } else if ((new Date()).getTime() - eventTimer > 1000) {
-            mouseEv = "longclick";
         }
-        eventTimer = 0;
         mouseDown = false;
     }
 
@@ -45,6 +42,7 @@ function touch2Mouse(e)
             deltaX = theTouch.clientX - startX;
             deltaY = theTouch.clientY - startY;
             moveDirection = deltaX > deltaY ? 'horizontal' : 'vertical';
+            //console.log(moveDirection);
         }
     }
 
@@ -56,7 +54,7 @@ function touch2Mouse(e)
 }
 
 
-/* To add touch support for element need create listeners for component dom element
+/* To add touch support to element need create listeners for component dom element
 if (hasTouch) {
     element.addEventListener("touchstart", touch2Mouse, true);
     element.addEventListener("touchmove", touch2Mouse, true);

@@ -187,4 +187,6 @@
     });
 })( jQuery );
 
-
+$(function () {
+    $('[data-role=times]').times();
+});
